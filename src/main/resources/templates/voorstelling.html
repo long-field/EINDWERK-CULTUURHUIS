@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title= 'Voorstelling')">
+</head>
+<body>
+<nav th:replace="fragments::nav"></nav>
+
+<div class="jumbotron">
+<div class="container top-buffer">
+
+    <div class="card" th:object="${voorstelling}">
+        <h5 class="card-header text-white bg-secondary"th:text="*{titel}"></h5>
+
+        <div class="card-body">
+            <h5 class="card-title" th:text="*{uitvoerders}"></h5>
+            <p class="card-text" th:text="*{stringDatum}"></p>
+            <p class="card-text" th:text="${voorstelling.tijdstip}"></p>
+            <p class="card-text" th:text="${'Ticketprijs  € '+ voorstelling.prijs}"></p>
+            <p class="card-text uitverkocht" th:if="*{uitverkocht}">UITVERKOCHT</p>
+            <p class="card-text " th:if="not*{uitverkocht}" th:text="${'Tickets beschikbaar: ' + voorstelling.vrijeplaatsen}"></p>
+
+            <form th:object="${aantalPlaatsenForm}" th:action="@{/voorstellingen/{id}/reserveren(id=${voorstelling.id})}" method="post">
+                <div class="form-group" th:if="${voorstelling.vrijeplaatsen} > 0">
+                    <label>Aantal:
+                        <span th:errors="*{aantal}"></span>
+                        <span th:if="${fout} != null" th:text="${fout}"></span>
+
+                    </label>
+                    <br>
+                    <input th:field="*{aantal}" type='number' autofocus required min="1">
+                    <br>
+                    <br>
+                    <input type="submit" class="btn btn-info" value="Reserveer">
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div></div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

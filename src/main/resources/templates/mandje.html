@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title= 'Voorstellingen')"></head>
+<body>
+<nav th:replace="fragments::nav"></nav>
+
+<div class="jumbotron">
+    <div class="container top-buffer">
+        <div class="card" th:if="${mandje} != null and not${mandje.isLeeg()}">
+            <h5 class="card-header text-white bg-secondary">Winkelmandje</h5>
+
+            <div class="card-body">
+                <table class="table">
+                    <form method="post" th:action="@{/mandje/verwijderen}">
+                        <thead>
+                        <tr>
+                            <th>Datum</th>
+                            <th>Titel</th>
+                            <th>Artiest</th>
+                            <th>Prijs/Ticket</th>
+                            <th>Tickets</th>
+                            <th ><input th:if="${mandje} != null and not${mandje.isLeeg()}" class="btn btn-secondary" type="submit" value="Verwijderen"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="reservatie : ${reservaties}" th:object="${reservatie}">
+                            <td th:text="*{key.stringDatum}"/>
+                            <td th:text="*{key.titel}"/>
+                            <td th:text="*{key.uitvoerders}"/>
+                            <td th:text="*{'€ ' + {key.prijs}}"/>
+                            <td th:text="*{value}"/>
+                            <td class="verwijderen"><input type="checkbox" name="verwijder" th:value="*{key.id}"></td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td>Totaal: <strong th:text="${{totaal}}"></strong></td>
+                        </tr>
+                        </tfoot>
+                    </form>
+                </table>
+                <a sec:authorize="isAuthenticated()" th:if="${mandje} != null and not${mandje.isLeeg()}" class="btn btn-info" th:href="@{/reservatie/toevoegen}">Plaats bestelling</a>
+                <a sec:authorize="isAnonymous()" th:if="${mandje} != null and not${mandje.isLeeg()}" class="btn btn-info" th:href="@{/login}">Plaats bestelling</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

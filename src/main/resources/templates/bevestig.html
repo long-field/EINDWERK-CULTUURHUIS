@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title= 'Voorstelling')">
+</head>
+<body>
+<nav th:replace="fragments::nav"></nav>
+
+
+<div class="jumbotron">
+    <div class="container top-buffer">
+        <div class="card" sec:authorize="isAuthenticated()" th:if="*{klant} != null">
+            <h5 class="card-header text-white bg-secondary">Bevestig bestelling</h5>
+
+            <div class="card-body">
+                <h5 class="card-title" th:text="${klant.voornaam} + ' ' + ${klant.familienaam}"></h5>
+                <p class="card-text" th:text="${klant.adres.straat} + ' ' + ${klant.adres.huisnr}"></p>
+                <p class="card-text" th:text="${klant.adres.postcode} + ' ' + ${klant.adres.gemeente}"></p>
+                <form th:action="@{/reservatie/bevestigen}" method="post">
+                    <input class="btn btn-info mt-3" type="submit" value="Bevestig" name="bevestigen" >
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

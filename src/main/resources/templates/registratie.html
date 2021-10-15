@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Cultuurhuis | Registratie')"></head>
+
+<body>
+<nav th:replace="fragments::nav"></nav>
+
+<div class="jumbotron">
+    <div class="container  top-buffer">
+
+        <div class="card top-buffer" >
+            <div class="card  ">
+
+                <h5 class="card-header text-white bg-secondary">Maak een nieuwe account</h5>
+                <div class="card-body">
+                    <form class="form-group" th:action='@{/registratie/registratie}' method='post' th:object="${nieuweKlantForm}" th:class="registratie">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label><b>Voornaam:</b></label>
+                                <span th:errors="*{voornaam}"></span>
+                                <input th:field="*{voornaam}" type="text" class="form-control" name="voornaam" placeholder="Voornaam" required autofocus>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label><b>Familienaam:</b></label>
+                                <span th:errors="*{familienaam}"></span>
+                                <input th:field="*{familienaam}" type="text" class="form-control" name="familienaam" placeholder="Familienaam" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label><b>Straat:</b></label>
+                                <span th:errors="*{straat}"></span>
+                                <input th:field="*{straat}" type="text" class="form-control" name="straat" placeholder="Straatnaam" required>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label><b>Huisnummer:</b></label>
+                                <span th:errors="*{huisnr}"></span>
+                                <input th:field="*{huisnr}" type="text" class="form-control" name="huisnr" placeholder="Huisnummer" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+
+                            <div class="form-group col-md-6">
+                                <label><b>Gemeente:</b></label>
+                                <span th:errors="*{gemeente}"></span>
+                                <input th:field="*{gemeente}" type="text" class="form-control" name="gemeente" placeholder="Gemeente" required>
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label><b>Postcode:</b></label>
+                                <span th:errors="*{postcode}"></span>
+                                <input th:field="*{postcode}" type="text" class="form-control" name="postcode" placeholder="Postcode" required>
+                            </div>
+                        </div>
+
+
+                        <dt class="input-label">
+                            <label name="gebruikersnaam" autocapitalize="off" autofocus="autofocus" required="required" for="user_gebruikersnaam">Gebruikersnaam:</label>
+                        </dt>
+                        <dd>
+                            <span th:errors="*{gebruikersnaam}"></span>
+                            <span th:if="${foutboodschap} != null" th:text="${foutboodschap}"></span>
+                            <input th:field="*{gebruikersnaam}" name="gebruikersnaam" autocapitalize="off" autofocus="autofocus" required="required" class="form-control input py-1" type="text" id="user_gebruikersnaam" autocomplete="off" spellcheck="false">
+                        </dd>
+
+                        <dt class="input-label">
+                            <label name="familienaam" autocapitalize="off" autofocus="autofocus" required="required" for="user_paswoord">Wachtwoord:</label>
+                        </dt>
+                        <dd>
+                            <span th:errors="*{paswoord}"></span>
+                            <input th:field="*{paswoord}" name="paswoord" autocapitalize="off" autofocus="autofocus" required="required" class="form-control input py-1" type="text" id="user_paswoord" autocomplete="off" spellcheck="false">
+                        </dd>
+
+                        <dt class="input-label">
+                            <label name="herhaalPaswoord" autocapitalize="off" autofocus="autofocus" required="required" for="user_herhaalPaswoord">Wachtwoord:</label>
+                        </dt>
+                        <dd>
+                            <span th:errors="*{herhaalPaswoord}"></span>
+                            <span th:if="${foutboodschap} != null" th:text="${foutboodschap}"></span>
+                            <input th:field="*{herhaalPaswoord}" name="herhaalPaswoord" autocapitalize="off" autofocus="autofocus" required="required" class="form-control input py-1" type="text" id="user_herhaalPaswoord" autocomplete="off" spellcheck="false">
+                        </dd>
+
+                        <input class="btn btn-info m-auto" type='submit' value='Registreer'>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div></div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

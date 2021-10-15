@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title= 'Voorstelling')">
+</head>
+<body><nav th:replace="fragments::nav"></nav>
+
+<div class="jumbotron">
+    <div class="container top-buffer">
+        <div th:if="not${geenfouten}" class="alert alert-danger" role="alert">
+            Enkele transacties zijn niet geslaagd!
+        </div>
+        <div class="card" sec:authorize="isAuthenticated()">
+            <h5 class="card-header text-white bg-secondary">Confirmatie</h5>
+
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr class="header">
+                        <th>Datum</th>
+                        <th>Titel</th>
+                        <th>Uitvoerders</th>
+                        <th>Prijs</th>
+                        <th>Plaatsen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="voorstelling:${geslaagd}" th:object="${voorstelling}">
+                        <td th:text="*{key.stringDatum}"/>
+                        <td th:text="*{key.titel}"/>
+                        <td th:text="*{key.uitvoerders}"/>
+                        <td th:text="*{'€ ' + {key.prijs}}"/>
+                        <td th:text="*{value}"/>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="card top-buffer" sec:authorize="isAuthenticated()" th:if="not${geenfouten}">
+            <h5 class="card-header text-white bg-alert">Niet geslaagd</h5>
+
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr class="header">
+                        <th>Datum</th>
+                        <th>Titel</th>
+                        <th>Uitvoerders</th>
+                        <th>Prijs</th>
+                        <th>Plaatsen</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="voorstelling:${nietgeslaagd}" th:object="${voorstelling}">
+                        <td th:text="*{key.stringDatum}"/>
+                        <td th:text="*{key.titel}"/>
+                        <td th:text="*{key.uitvoerders}"/>
+                        <td th:text="*{'€ ' + {key.prijs}}"/>
+                        <td th:text="*{value}"/>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
