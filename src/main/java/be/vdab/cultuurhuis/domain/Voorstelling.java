@@ -27,7 +27,6 @@ public class Voorstelling implements Serializable {
     @NotBlank
     private String uitvoerders;
     @NotNull
-    @DateTimeFormat(style = "SS")
     private LocalDateTime datum;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "genreid")

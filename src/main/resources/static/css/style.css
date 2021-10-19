@@ -1,3 +1,9 @@
 .top-buffer { margin-top:20px; }
 .uitverkocht{color: #721c24}
 .overschrijfcursor{cursor: pointer}
+.breed800 {
+    max-width: 800px;
+    margin: 50px auto;
+    position: relative;
+
+}

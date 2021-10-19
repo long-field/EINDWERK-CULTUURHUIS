@@ -1,14 +1,31 @@
 package be.vdab.cultuurhuis.forms;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
 public class NieuweKlantForm {
+    @NotBlank
+    @Pattern(regexp = "^[a-zA-Z]*$" ,  message="Ongeldig!")
     private String voornaam;
+    @NotBlank
+    @Pattern(regexp = "^[a-zA-Z]*$" ,  message="Ongeldig!")
     private String familienaam;
+    @NotBlank
     private String straat;
+    @NotBlank
+    @Pattern(regexp = "^[0-9]+$", message="Ongeldig!")
     private String huisnr;
+    @NotBlank
+    @Pattern(regexp = "^(?:(?:[1-9])(?:\\d{3}))$", message="Ongeldig!")
     private String postcode;
+    @NotBlank
     private String gemeente;
+    @NotBlank
     private String gebruikersnaam;
+    @NotBlank
+    @Pattern(regexp = "^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$" ,  message="Ongeldig!")
     private String paswoord;
+    @NotBlank
     private String herhaalPaswoord;
 
 

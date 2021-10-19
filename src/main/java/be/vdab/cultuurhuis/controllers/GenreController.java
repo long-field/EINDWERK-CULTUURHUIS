@@ -20,11 +20,24 @@ public class GenreController {
         this.voorstellingService = voorstellingService;
     }
 
+    //Voor mvc
+/*
     @GetMapping
     public ModelAndView genre(@PathVariable long id) {
         ModelAndView modelAndView = new ModelAndView("genre");
         modelAndView.addObject("voorstellingen",voorstellingService.findByGenreId(id));
         genreService.findById(id).ifPresent(genre ->{modelAndView.addObject("genrenaam" ,genre.getNaam());});
+        return modelAndView;
+    }
+    */
+
+    //Voor rest en infinite scroll:
+    @GetMapping
+    public ModelAndView genre(@PathVariable long id) {
+        ModelAndView modelAndView = new ModelAndView("scrollbygenre");
+        genreService.findById(id).ifPresent(genre ->{modelAndView.addObject("genreid" ,genre.getId());});
+        genreService.findById(id).ifPresent(genre ->{modelAndView.addObject("genrenaam" ,genre.getNaam());});
+        modelAndView.addObject("maxgenre",voorstellingService.findMaxMetGenre(id));
         return modelAndView;
     }
 }

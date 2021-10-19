@@ -1,11 +1,16 @@
 <!doctype html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments::head(title= 'Voorstellingen')"></head>
+<head th:replace="fragments::head(title= 'Login')"></head>
 <body>
 <nav th:replace="fragments::nav"></nav>
 <div class="jumbotron">
 <div class="container">
-    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div th:if="${param.error}" class="alert alert-danger col-md-6  min-vh-100 d-flex flex-column align-items-center justify-content-center">Verkeerde gebruikersnaam of paswoord</div>
+        <div class="col-md-3"></div>
+    </div>
+   <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
@@ -35,7 +40,7 @@
                                     <button class="btn btn-info w-100" type="submit">Login</button>
                                 </div>
                                 <div class="col-12">
-                                    <p class="text-center">Nog geen profiel? <a class="text-info" th:href="@{/registratie}" id="signup">Registreer</a></p>
+                                    <p class="text-center">Nog geen profiel? <a class="text-info" th:href="@{/registreer}" id="signup">Registreer</a></p>
                                 </div>
                             </form>
                         </div>

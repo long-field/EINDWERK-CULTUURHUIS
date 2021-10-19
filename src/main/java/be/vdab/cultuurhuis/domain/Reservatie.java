@@ -23,8 +23,7 @@ public class Reservatie implements Serializable {
 
     protected Reservatie() { }
 
-    public Reservatie(Klant klant, Voorstelling voorstelling, int plaatsen) throws NullPointerException {
-        if (klant == null || voorstelling == null) throw new NullPointerException();
+    public Reservatie(Klant klant, Voorstelling voorstelling, int plaatsen)  {
         this.klant = klant;
         this.voorstelling = voorstelling;
         this.plaatsen = plaatsen;

@@ -8,6 +8,7 @@ import javax.validation.constraints.Positive;
 public class AantalPlaatsenForm {
     @NotNull()
     @Positive()
+
     private Integer aantal;
 
     public AantalPlaatsenForm(Integer aantal) {

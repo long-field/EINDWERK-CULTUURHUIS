@@ -49,10 +49,8 @@ public class ReservatieController {
     }
 
     @PostMapping("bevestigen")
-    ModelAndView create(SessionStatus session, HttpSession httpSession, HttpServletRequest request) {
+    ModelAndView create() {
         if (mandje.isLeeg()) return new ModelAndView("redirect:/");
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        Klant klant = klantService.findByGebruikersnaam(username).get();
         Map<Voorstelling, Integer> nietGeslaagd= new LinkedHashMap<>();
         Map<Voorstelling, Integer> geslaagd = new LinkedHashMap<>();
         mandje.getReservaties().forEach((id, aantal) -> {
@@ -61,13 +59,12 @@ public class ReservatieController {
                 voorstelling.setVrijeplaatsen(voorstelling.getVrijeplaatsen() - aantal);
                 voorstellingService.update(voorstelling);
                 geslaagd.put(voorstelling, aantal);
-                reservatieService.create(new Reservatie(klant, voorstelling, aantal));
+                reservatieService.create(new Reservatie(klantService.findByGebruikersnaam(SecurityContextHolder.getContext().getAuthentication().getName()).get(), voorstelling, aantal));
             }
             else {
                nietGeslaagd.put(voorstelling, voorstelling.getVrijeplaatsen());
             }
         });
-
         mandje.verwijderMandje();
         boolean geenFouten = nietGeslaagd.isEmpty();
 

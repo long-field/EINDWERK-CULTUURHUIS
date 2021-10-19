@@ -26,8 +26,7 @@ public class Klant implements Serializable {
 
     protected Klant() { }
 
-    public Klant(@NotBlank String voornaam, @NotBlank String familienaam, @Valid Adres adres, @NotBlank String gebruikersnaam, @NotBlank String paswoord) throws NullPointerException {
-        if (adres == null) throw new NullPointerException("Adres kan niet null zijn");
+    public Klant(@NotBlank String voornaam, @NotBlank String familienaam, @Valid Adres adres, @NotBlank String gebruikersnaam, @NotBlank String paswoord)  {
         this.voornaam = voornaam;
         this.familienaam = familienaam;
         this.adres = adres;

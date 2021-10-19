@@ -1,23 +1,39 @@
 <!DOCTYPE html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments::head(title= 'genre')"></head>
+<head th:replace="fragments::head(title= 'Programmatie')"></head>
 <body>
 <nav th:replace="fragments::nav"></nav>
 <div class="jumbotron">
-<div class="container  top-buffer">
+
+<div class="container"  >
     <h1 th:text="${genrenaam}" class="mt-3"> </h1>
     <div class="card top-buffer" th:each="voorstelling:${voorstellingen}" th:object="${voorstelling}">
         <div class="card  ">
 
-            <h5 class="card-header text-white bg-secondary"th:text="*{titel}"></h5>
+            <h5 class="card-header text-white bg-secondary h2"> <u th:text="*{titel}"></u></h5>
             <div class="card-body">
-                <h5 class="card-title" th:text="*{uitvoerders}"></h5>
-                <p class="card-text" th:text="*{stringDatum}"></p>
-                <p class="card-text uitverkocht" th:if="*{uitverkocht}">UITVERKOCHT</p>
-                <p class="card-text " th:if="not*{uitverkocht}">Tickets beschikbaar</p>
-                <a th:href="@{/voorstellingen/{id}(id=*{id})}" class="btn btn-info">meer info</a>
-            </div>
-        </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-7">
+
+                            <h2 class="card-title" th:text="*{uitvoerders}"></h2>
+                            <p class="card-text" th:text="*{stringDatum}"></p>
+
+                            <br>
+                            <p class="card-text uitverkocht" th:if="*{uitverkocht}">UITVERKOCHT</p>
+                            <p class="card-text " th:if="not*{uitverkocht}" th:text="${voorstelling.vrijeplaatsen + ' tickets beschikbaar.' }"></p>
+
+
+                            <a th:href="@{/voorstellingen/{id}(id=*{id})}" class="btn btn-info">meer info</a>
+                        </div>
+
+                        <div class="col">
+                            <img class="img-fluid" th:src="@{/images/uitverkocht.png}" th:if="*{uitverkocht}"></img>
+                        </div>
+                        <div class="col-1">
+                        </div>
+
+                    </div></div>
 
     </div>
 </div></div>

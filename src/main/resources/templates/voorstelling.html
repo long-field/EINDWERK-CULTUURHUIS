@@ -1,43 +1,46 @@
 <!DOCTYPE html>
-<html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments::head(title= 'Voorstelling')">
+<html lang="nl" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="fragments::head(title= 'Event')">
 </head>
 <body>
 <nav th:replace="fragments::nav"></nav>
 
 <div class="jumbotron">
 <div class="container top-buffer">
-
+    <div th:if="${error} != null" th:text="${error}" class="alert alert-danger"></div>
     <div class="card" th:object="${voorstelling}">
-        <h5 class="card-header text-white bg-secondary"th:text="*{titel}"></h5>
+        <h5 class="card-header text-white bg-secondary h2"><u th:text="*{titel}"></u></h5>
 
         <div class="card-body">
-            <h5 class="card-title" th:text="*{uitvoerders}"></h5>
-            <p class="card-text" th:text="*{stringDatum}"></p>
-            <p class="card-text" th:text="${voorstelling.tijdstip}"></p>
-            <p class="card-text" th:text="${'Ticketprijs  € '+ voorstelling.prijs}"></p>
-            <p class="card-text uitverkocht" th:if="*{uitverkocht}">UITVERKOCHT</p>
-            <p class="card-text " th:if="not*{uitverkocht}" th:text="${'Tickets beschikbaar: ' + voorstelling.vrijeplaatsen}"></p>
-
-            <form th:object="${aantalPlaatsenForm}" th:action="@{/voorstellingen/{id}/reserveren(id=${voorstelling.id})}" method="post">
-                <div class="form-group" th:if="${voorstelling.vrijeplaatsen} > 0">
-                    <label>Aantal:
+            <div class="row ">
+                <div class="col-7">
+                    <h2 class="card-title" th:text="*{uitvoerders}"></h2>
+                    <p class="card-text" th:text="${voorstelling.stringDatum} +' '+ ${voorstelling.tijdstip}"></p>
+                    <p class="card-text" th:text="${'Ticketprijs:  € '+ voorstelling.prijs}"></p>
+                    <p class="card-text uitverkocht" th:if="*{uitverkocht}">UITVERKOCHT</p>
+                    <p class="card-text " th:if="not*{uitverkocht}" th:text="${voorstelling.vrijeplaatsen + ' tickets beschikbaar.' }"></p>
+                    <form th:object="${aantalPlaatsenForm}" th:action="@{/voorstellingen/reserveren/{id}(id=${voorstelling.id})}" method="post">
+                    <div class="form-group" th:if="${voorstelling.vrijeplaatsen} > 0">
+                        <div class="input-group w-50">
                         <span th:errors="*{aantal}"></span>
-                        <span th:if="${fout} != null" th:text="${fout}"></span>
-
-                    </label>
-                    <br>
-                    <input th:field="*{aantal}" type='number' autofocus required min="1">
-                    <br>
+                        <label class="input-group-text" id="inputGroup-sizing-default" >Aantal &nbsp</label>
+                        <input id="aantal" th:field="*{aantal}" type='number' autofocus required min="1"  class="form-control " aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
                     <br>
                     <input type="submit" class="btn btn-info" value="Reserveer">
                 </div>
-            </form>
+            </form></div>
+                    <div class="col">
+                        <img class="img-fluid" th:src="@{/images/uitverkocht.png}" th:if="*{uitverkocht}"></img>
+                    </div>
+                    <div class="col-1">
+                    </div>
+
 
         </div>
     </div>
 
-</div></div>
+</div></div></div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
