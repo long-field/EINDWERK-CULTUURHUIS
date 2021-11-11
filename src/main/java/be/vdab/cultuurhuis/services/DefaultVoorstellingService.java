@@ -93,7 +93,7 @@ public class DefaultVoorstellingService implements VoorstellingService{
         var max =voorstellingRepository.countByGenreIdAndDatumGreaterThanEqualOrderByDatumAsc(id,LocalDateTime.now());
         return max;
     }
-    //Genre datum ordening
+    //Genre where datum met ordening
     @Override
     public Set<VoorstellingDto> findByGenreIdPaged(long id,int page,int total) {
         Set<Voorstelling> pagina=voorstellingRepository.findByGenreIdAndDatumGreaterThanEqualOrderByDatumAsc(id, LocalDateTime.now(),PageRequest.of(page,total)).toSet();

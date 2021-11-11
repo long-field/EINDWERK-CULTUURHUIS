@@ -3,7 +3,7 @@
 <head th:replace="fragments::head(title= 'Login')"></head>
 <body>
 <nav th:replace="fragments::nav"></nav>
-<div class="jumbotron">
+<div class="jumbotron jumbocolor">
 <div class="container">
     <div class="row">
         <div class="col-md-3"></div>
@@ -15,7 +15,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
                     <div class="card mb-3">
-                        <div class="card-body">
+                        <div class="card-body cardcolor">
                             <div class="pt-4 pb-2">
                                 <h5 class="card-title text-center pb-0 fs-4">Aanmelden</h5>
                                 <p class="text-center small">Gebruikersnaam en wachtwoord.</p>
@@ -24,9 +24,9 @@
 
                                 <div class="col-12">
                                     <label for="yourUsername" class="form-label">Gebruiker</label>
-                                    <div class="input-group has-validation">
+                                    <div class="input-group has-validation" >
 
-                                        <input type="text" name="username" class="form-control" id="yourUsername"required>
+                                        <input type="text" name="username" autocapitalize="off" class="form-control" id="yourUsername"required>
                                         <div class="invalid-feedback">Geef je gebruikersnaam.</div>
                                     </div>
                                 </div>

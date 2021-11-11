@@ -38,6 +38,34 @@ public class Voorstelling implements Serializable {
     @Version
     private long versie;
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setTitel(String titel) {
+        this.titel = titel;
+    }
+
+    public void setUitvoerders(String uitvoerders) {
+        this.uitvoerders = uitvoerders;
+    }
+
+    public void setDatum(LocalDateTime datum) {
+        this.datum = datum;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public void setPrijs(BigDecimal prijs) {
+        this.prijs = prijs;
+    }
+
+    public void setVersie(long versie) {
+        this.versie = versie;
+    }
+
     protected Voorstelling() { }
 
     public Voorstelling(@NotBlank String titel, @NotBlank String uitvoerders, @NotNull LocalDateTime datum, Genre genre, @NotNull BigDecimal prijs, @NotNull int vrijeplaatsen, long versie) {

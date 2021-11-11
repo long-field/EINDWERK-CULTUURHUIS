@@ -5,41 +5,37 @@
 <body>
 <nav th:replace="fragments::nav"></nav>
 
-<div class="jumbotron">
+<div class="jumbotron jumbocolor">
     <div class="container  top-buffer " >
 
-        <div th:if="${error} != null" th:text="${error}" class="alert alert-danger breed800"></div>
-        <div sec:authorize="isAuthenticated()" class="alert alert-danger breed800">U bent al aangemeld.</div>
+        <div th:if="${error} != null" th:text="${error}" class="alert alert-danger  min-vh-100 d-flex flex-column align-items-center justify-content-center"></div>
+        <div sec:authorize="isAuthenticated()" class="alert alert-danger  min-vh-100 d-flex flex-column align-items-center justify-content-center">U bent al aangemeld.</div>
         <div class="card top-buffer breed800" sec:authorize="isAnonymous()">
 
             <div class="card  ">
-                <h5 class="card-header text-white bg-secondary"><u>Registreer</u></h5>
-                <div class="card-body">
+                <h5 class="card-header text-white cardheadercolor"><u>Registreer</u></h5>
+                <div class="card-body cardcolor">
                     <form class="form-group" th:action='@{/registreer/ok}' method='post' th:object="${nieuweKlantForm}" th:class="registratie">
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label><b>Voornaam:</b></label>
+                                <label><b><u>Voornaam:</u></b></label>
                                 <span th:errors="*{voornaam}"></span>
                                 <input th:field="*{voornaam}" type="text" class="form-control" name="voornaam" placeholder="Voornaam" required autofocus>
                             </div>
-
                             <div class="form-group col-md-6">
-                                <label><b>Familienaam:</b></label>
+                                <label><b><u>Familienaam:</u></b></label>
                                 <span th:errors="*{familienaam}"></span>
                                 <input th:field="*{familienaam}" type="text" class="form-control" name="familienaam" placeholder="Familienaam" required>
                             </div>
                         </div>
-
                         <div class="form-row">
-
                             <div class="form-group col-md-6">
-                                <label><b>Straat:</b></label>
+                                <label><b><u>Straat:</u></b></label>
                                 <span th:errors="*{straat}"></span>
                                 <input th:field="*{straat}" type="text" class="form-control" name="straat" placeholder="Straatnaam" required>
                             </div>
-
                             <div class="form-group col-md-6">
-                                <label><b>Huisnummer:</b></label>
+                                <label><b><u>Huisnummer:</u></b></label>
                                 <span th:errors="*{huisnr}"></span>
                                 <input th:field="*{huisnr}" type="text" class="form-control" name="huisnr" placeholder="Huisnummer" required>
                             </div>
@@ -48,37 +44,37 @@
                         <div class="form-row">
 
                             <div class="form-group col-md-6">
-                                <label><b>Gemeente:</b></label>
+                                <label><b><u>Gemeente:</u></b></label>
                                 <span th:errors="*{gemeente}"></span>
                                 <input th:field="*{gemeente}" type="text" class="form-control" name="gemeente" placeholder="Gemeente" required>
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label><b>Postcode:</b></label>
+                                <label><b><u>Postcode:</u></b></label>
                                 <span th:errors="*{postcode}"></span>
                                 <input th:field="*{postcode}" type="text" class="form-control" name="postcode" placeholder="Postcode" required>
                             </div>
                         </div>
 
 
-                        <dt class="input-label">
-                            <label name="gebruikersnaam" autocapitalize="off" autofocus="autofocus" required="required" for="user_gebruikersnaam">Gebruikersnaam:</label>
+                        <dt class="form-label">
+                            <label name="gebruikersnaam" autocapitalize="off" autofocus="autofocus" required="required" for="user_gebruikersnaam"><u>Gebruikersnaam:</u></label>
                         </dt>
                         <dd>
 
                             <input th:field="*{gebruikersnaam}" name="gebruikersnaam" autocapitalize="off" autofocus="autofocus" required="required" class="form-control input py-1" type="text" id="user_gebruikersnaam" autocomplete="off" spellcheck="false">
                         </dd>
 
-                        <dt class="input-label">
-                            <label name="familienaam" autocapitalize="off" autofocus="autofocus" required="required" for="user_paswoord">Wachtwoord:</label>
+                        <dt class="form-label">
+                            <label name="familienaam" autocapitalize="off" autofocus="autofocus" required="required" for="user_paswoord"><u>Wachtwoord:</u></label>
                         </dt>
                         <dd>
                             <span th:errors="*{paswoord}"></span>
                             <input th:field="*{paswoord}" name="paswoord" autocapitalize="off" autofocus="autofocus" required="required" class="form-control input py-1" type="text" id="user_paswoord" autocomplete="off" spellcheck="false">
                         </dd>
 
-                        <dt class="input-label">
-                            <label name="herhaalPaswoord" autocapitalize="off" autofocus="autofocus" required="required" for="user_herhaalPaswoord">Wachtwoord:</label>
+                        <dt class="form-label">
+                            <label name="herhaalPaswoord" autocapitalize="off" autofocus="autofocus" required="required" for="user_herhaalPaswoord"><u>Wachtwoord:</u></label>
                         </dt>
                         <dd>
                             <input th:field="*{herhaalPaswoord}" name="herhaalPaswoord" autocapitalize="off" autofocus="autofocus" required="required" class="form-control input py-1" type="text" id="user_herhaalPaswoord" autocomplete="off" spellcheck="false">

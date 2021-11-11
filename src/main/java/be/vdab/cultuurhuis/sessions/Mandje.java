@@ -13,7 +13,6 @@ public class Mandje implements Serializable {
     private Map<Long, Integer> reservaties = new LinkedHashMap<>();
 
     public boolean isLeeg() {
-
         return reservaties.isEmpty();
     }
     public void voegToe(long id, int aantal) {

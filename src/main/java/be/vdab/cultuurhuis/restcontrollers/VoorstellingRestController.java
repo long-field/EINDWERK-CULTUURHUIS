@@ -51,14 +51,15 @@ public class VoorstellingRestController {
 
         return service.findMax();
     }
-
+    //Where clausule datum en id inbegrepen
     @Operation(summary = "max aantal in genre")
     @GetMapping("/maxgenre/{id}")
     long max(@PathVariable long id) throws Exception {
 
         return service.findMaxMetGenre(id);
     }
-    @Operation(summary = "Een voorstelling zoeken op genreid")
+    //Where clausule datum en id inbegrepen
+    @Operation(summary = "Voorstellingen zoeken op genreid")
     @GetMapping("/paged/genre/{id}")
     Set<VoorstellingDto> getVoorstellingenDtoPerGenrePaged(@PathVariable long id,@RequestParam int page,@RequestParam int total) throws Exception {
             return service.findByGenreIdPaged(id,page,total);

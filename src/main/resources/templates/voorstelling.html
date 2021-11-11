@@ -5,13 +5,13 @@
 <body>
 <nav th:replace="fragments::nav"></nav>
 
-<div class="jumbotron">
+<div class="jumbotron jumbocolor">
 <div class="container top-buffer">
     <div th:if="${error} != null" th:text="${error}" class="alert alert-danger"></div>
     <div class="card" th:object="${voorstelling}">
-        <h5 class="card-header text-white bg-secondary h2"><u th:text="*{titel}"></u></h5>
+        <h5 class="card-header text-white cardheadercolor h2"><u th:text="*{titel}"></u></h5>
 
-        <div class="card-body">
+        <div class="card-body cardcolor">
             <div class="row ">
                 <div class="col-7">
                     <h2 class="card-title" th:text="*{uitvoerders}"></h2>

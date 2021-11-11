@@ -21,6 +21,18 @@ public class Genre implements Serializable {
     @OrderBy("datum")
     private Set<Voorstelling> voorstellingen;
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setNaam(String naam) {
+        this.naam = naam;
+    }
+
+    public void setVoorstellingen(Set<Voorstelling> voorstellingen) {
+        this.voorstellingen = voorstellingen;
+    }
+
     protected Genre() { }
 
     public Genre(@NotBlank String naam) {
